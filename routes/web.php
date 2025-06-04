@@ -18,6 +18,3 @@ Route::post('vat-processing/validate', [SingleVatNumberProcessingController::cla
 Route::resource('vat-processing', VatProcessingController::class)
     ->except(['destroy', 'edit', 'update', 'show'])
     ->names('vat.processing');
-
-require __DIR__.'/settings.php';
-require __DIR__.'/auth.php';
