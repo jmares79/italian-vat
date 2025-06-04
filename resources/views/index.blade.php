@@ -19,6 +19,21 @@
         </div>
     @endif
 
+    <form method="GET" action="{{ route('vat.processing.index') }}" class="mb-3">
+        <div class="row g-2 align-items-end">
+            <div class="col-auto">
+                <select name="status" class="form-select" aria-label="Default select example" onchange="this.form.submit()">>
+                    <option selected>Filter by Status</option>
+                    <option value="">All</option>
+                    <option value="valid">Valid</option>
+                    <option value="invalid">Invalid</option>
+                    <option value="fixed">Fixed</option>
+                </select>
+            </div>
+            <noscript><div class="col-auto"><button class="btn btn-primary">Filter</button></div></noscript>
+        </div>
+    </form>
+
     <div class="card shadow-sm">
         <div class="card-body p-0">
             <table class="table table-striped mb-0">

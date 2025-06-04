@@ -11,9 +11,15 @@ class VatProcessingController extends Controller
 {
     public function __construct(protected readonly VatProcessingLogic $logic) {}
 
-    public function index()
+    public function index(Request $request)
     {
-        $numbers = Vat::latest()->paginate(10);
+        $numbers = Vat::orderBy('created_at', 'DESC');
+
+        if ($request->filled('status')) {
+            $numbers->search($request->input('status'));
+        }
+
+        $numbers = $numbers->paginate(25);
 
         return view('index', compact('numbers'));
     }

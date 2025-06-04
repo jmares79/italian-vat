@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Vat extends Model
@@ -15,4 +16,9 @@ class Vat extends Model
         'is_valid',
         'status',
     ];
+
+    public function scopeSearch(Builder $query, string $status): void
+    {
+        $query->where('status', $status);
+    }
 }
