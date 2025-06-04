@@ -10,7 +10,7 @@ readonly class VatProcessingLogic
 {
     public function __construct(protected VatStrategyFactory $factory) {}
 
-    public function process(UploadedFile $file, string $countryCode, bool $skipFirstRow = true): void
+    public function processVatFile(UploadedFile $file, string $countryCode, bool $skipFirstRow = true): void
     {
         $vatStrategy = $this->factory->make($countryCode);
 
@@ -47,5 +47,20 @@ readonly class VatProcessingLogic
         }
 
         fclose($fp);
+    }
+
+    public function processSingleVat(string $number, string $countryCode): array
+    {
+        $vatStrategy = $this->factory->make($countryCode);
+
+        $number = $vatStrategy->process($number);
+        $status = $vatStrategy->getLastStatus();
+        $operation = $vatStrategy->getLastOperationPerformed();
+
+        return [
+            'number' => $number,
+            'status' => $status,
+            'operation' => $operation,
+        ];
     }
 }

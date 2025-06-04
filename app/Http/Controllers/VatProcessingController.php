@@ -31,14 +31,9 @@ class VatProcessingController extends Controller
 
     public function store(FileUploadRequest $request)
     {
-        $this->logic->process($request->file('file'), $request->validated('country_code'));
+        $this->logic->processVatFile($request->file('file'), $request->validated('country_code'));
 
         // After processing the file, redirect to the index page
         return redirect()->route('vat.processing.index');
-    }
-
-    public function show(string $id)
-    {
-        dump('SHOW');
     }
 }

@@ -35,37 +35,18 @@
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    @if (!empty($data))
-        <div class="card shadow-sm mb-5">
-            <div class="card-header bg-success text-white">
-                <strong>Uploaded File:</strong> {{ $data['filename'] }}
+    <form method="POST" action="{{ route('vat.processing.single') }}" class="mb-4">
+        @csrf
+        <div class="row g-2 align-items-end">
+            <div class="col-auto">
+                <label for="text_input" class="form-label">Enter Code</label>
+                <input type="text" name="text_input" id="text_input" class="form-control" required>
             </div>
-            <div class="card-body">
-                <p><strong>Stored Path:</strong> {{ $data['stored_path'] }}</p>
-
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover">
-                        <thead class="table-light">
-                        <tr>
-                            @foreach ($data['headers'] as $header)
-                                <th>{{ $header }}</th>
-                            @endforeach
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach ($data['rows'] as $row)
-                            <tr>
-                                @foreach ($row as $cell)
-                                    <td>{{ $cell }}</td>
-                                @endforeach
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
+            <div class="col-auto">
+                <button class="btn btn-primary">Validate</button>
             </div>
         </div>
-    @endif
+    </form>
 </div>
 
 </body>

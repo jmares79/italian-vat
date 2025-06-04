@@ -25,9 +25,9 @@
                 <select name="status" class="form-select" aria-label="Default select example" onchange="this.form.submit()">>
                     <option selected>Filter by Status</option>
                     <option value="">All</option>
-                    <option value="valid">Valid</option>
-                    <option value="invalid">Invalid</option>
-                    <option value="fixed">Fixed</option>
+                    <option value="valid" {{ request('status') === 'valid' ? 'selected' : '' }}>Valid</option>
+                    <option value="invalid" {{ request('status') === 'invalid' ? 'selected' : '' }}>Invalid</option>
+                    <option value="fixed" {{ request('status') === 'fixed' ? 'selected' : '' }}>Fixed</option>
                 </select>
             </div>
             <noscript><div class="col-auto"><button class="btn btn-primary">Filter</button></div></noscript>
@@ -44,7 +44,6 @@
                     <th>VAT Number</th>
                     <th>VAT Country</th>
                     <th>Status</th>
-                    <th>Is Valid?</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -54,11 +53,7 @@
                         <td>{{ $number->custom_id }}</td>
                         <td>{{ $number->number }}</td>
                         <td>{{ $number->country_code }}</td>
-                        <td>{{ $number->status }}</td>
-                        <td>{{ $number->is_valid }}</td>
-{{--                        <td>--}}
-{{--                            <a href="{{ route('vat.processing.show', $number) }}" class="btn btn-sm btn-info">View</a>--}}
-{{--                        </td>--}}
+                        <td>{{ ucfirst($number->status) }}</td>
                     </tr>
                 @empty
                     <tr>
