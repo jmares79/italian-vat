@@ -1,17 +1,15 @@
 <?php
 
+use App\Http\Controllers\VatProcessingController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('welcome');
+    redirect(route('vat.processing.index'));
 })->name('home');
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('dashboard', function () {
-        return Inertia::render('dashboard');
-    })->name('dashboard');
-});
+Route::resource('vat-processing', VatProcessingController::class)
+    ->except(['destroy', 'edit', 'update'])
+    ->names('vat.processing');
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
