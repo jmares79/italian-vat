@@ -7,7 +7,7 @@ use App\Interfaces\VatProcessingStrategyInterface;
 class ItalianVatStrategy implements VatProcessingStrategyInterface
 {
     protected const VALID_VAT_REGEX = '/^IT\d{11}$/';
-    protected const FALLBACK_VAT_REGEX = '/\d{11}$/';
+    protected const FALLBACK_VAT_REGEX = '/^\d{11}$/';
     protected const COUNTRY_CODE = 'IT';
     protected string $lastStatus;
     protected string $lastOperationPerformed;
@@ -26,10 +26,10 @@ class ItalianVatStrategy implements VatProcessingStrategyInterface
      * Process the VAT number according to Italian format.
      *
      * @param string $vatNumber
-     * @return mixed It returns the VAT number as it is if valid or invalid, or a fixed version if possible,
-     *  setting the last status accordingly.
+     * @return string It returns the VAT number as it is if valid or invalid, or a fixed version if possible,
+     * setting the last status accordingly.
      */
-    public function process(string $vatNumber): mixed
+    public function process(string $vatNumber): string
     {
         $matches = [];
         $vatNumber = trim($vatNumber);

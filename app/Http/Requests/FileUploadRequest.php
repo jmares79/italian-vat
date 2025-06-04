@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class FileUploadRequest extends FormRequest
 {
-    public function prepareForValidation()
+    public function prepareForValidation(): void
     {
         if (! $this->has('country_code')) {
             $this->merge(['country_code' => 'IT']);
