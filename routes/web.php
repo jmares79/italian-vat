@@ -1,17 +1,23 @@
 <?php
 
+use App\Http\Controllers\SingleVatNumberProcessingController;
+use App\Http\Controllers\VatProcessingController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('welcome');
+    return redirect(route('vat.processing.index'));
 })->name('home');
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('dashboard', function () {
-        return Inertia::render('dashboard');
-    })->name('dashboard');
-});
+// Routes to validate a single VAT number for ITALY for the moment
+Route::view('/vat-processing/validate', 'validate');
+
+Route::post('vat-processing/validate', [SingleVatNumberProcessingController::class, 'validate'])
+    ->name('vat.processing.validate');
+
+// route for validating and handling VAT via file upload
+Route::resource('vat-processing', VatProcessingController::class)
+    ->except(['destroy', 'edit', 'update', 'show'])
+    ->names('vat.processing');
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
