@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Validate Italian VAT</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-light d-flex justify-content-center align-items-center" style="height: 100vh;">
+@extends('app')
 
-<div class="bg-white shadow p-4 rounded w-100" style="max-width: 400px;">
+@section('title', 'Upload file Number')
+
+@section('content')
+
+<div class="bg-white shadow p-4 rounded w-100" style="max-width: 600px; margin: auto;">
     <h2 class="mb-4 text-center">Validate VAT</h2>
 
     @if ($errors->any())
@@ -34,5 +32,4 @@
     </form>
 </div>
 
-</body>
-</html>
+@endsection

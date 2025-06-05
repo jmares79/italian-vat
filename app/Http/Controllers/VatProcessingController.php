@@ -13,7 +13,7 @@ class VatProcessingController extends Controller
 
     public function index(Request $request)
     {
-        $numbers = Vat::orderBy('created_at', 'DESC');
+        $numbers = Vat::orderBy('id', 'ASC');
 
         if ($request->filled('status')) {
             $numbers->search($request->input('status'));

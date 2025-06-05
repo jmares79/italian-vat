@@ -9,7 +9,7 @@ Route::get('/', function () {
 })->name('home');
 
 // Routes to validate a single VAT number for ITALY for the moment
-Route::view('/vat-processing/validate', 'validate');
+Route::view('/vat-processing/validate', 'validate')->name('vat.processing.validate.form');
 
 Route::post('vat-processing/validate', [SingleVatNumberProcessingController::class, 'validate'])
     ->name('vat.processing.validate');

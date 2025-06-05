@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>VAT listing</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-light py-5">
+@extends('app')
 
+@section('title', 'Validate Number')
+
+@section('content')
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Item List</h2>
@@ -70,6 +66,4 @@
     </div>
 </div>
 
-</body>
-</html>
-
+@endsection

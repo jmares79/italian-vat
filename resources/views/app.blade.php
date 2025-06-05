@@ -30,7 +30,7 @@
             }
         </style>
 
-        <title inertia>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'Laravel') }}</title>
 
         <link rel="icon" href="/favicon.ico" sizes="any">
         <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -39,12 +39,29 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
 
-        @routes
-        @viteReactRefresh
-        @vite(['resources/js/app.tsx', "resources/js/pages/{$page['component']}.tsx"])
-        @inertiaHead
+{{--        @routes--}}
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body class="font-sans antialiased">
-        @inertia
+        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm mb-4">
+            <div class="container">
+                <a class="navbar-brand" href="#">My App</a>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('home') }}">Items List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('vat.processing.create') }}">Upload File</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('vat.processing.validate.form') }}">Validate Number</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        @yield('content')
     </body>
 </html>

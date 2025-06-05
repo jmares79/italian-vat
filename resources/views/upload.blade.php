@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Upload Excel File</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-light py-5">
+@extends('app')
+
+@section('title', 'Upload file Number')
+
+@section('content')
 
 <div class="container">
     <h1 class="mb-4 text-center">Upload Vat numbers file</h1>
@@ -34,20 +31,6 @@
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
-
-    <form method="POST" action="{{ route('vat.processing.single') }}" class="mb-4">
-        @csrf
-        <div class="row g-2 align-items-end">
-            <div class="col-auto">
-                <label for="text_input" class="form-label">Enter Code</label>
-                <input type="text" name="text_input" id="text_input" class="form-control" required>
-            </div>
-            <div class="col-auto">
-                <button class="btn btn-primary">Validate</button>
-            </div>
-        </div>
-    </form>
 </div>
 
-</body>
-</html>
+@endsection
